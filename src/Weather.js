@@ -1,28 +1,52 @@
 import React from "react";
-import axios from "axios";
-import { ColorRing } from "react-loader-spinner";
+import "./Weather.css";
+import Search from "./Search";
 
-export default function Weather(props) {
-  function handleResponse(response) {
-    alert(
-      `The weather in ${response.data.name} is ${response.data.main.temp}°C`
-    );
-  }
-  let apiKey = "cf6b50b908fa2e0baca3eed8a569a5f6";
-  let units = "metric";
-  let url = `https://api.openweathermap.org/data/2.5/weather?q=${props.city}&appid=${apiKey}&units=${units}`;
-
-  axios.get(url).then(handleResponse);
+export default function Weather() {
+  let weatherData = {
+    city: "New York",
+    temperature: 19,
+    date: "Tuesday 10:00",
+    description: "Cloudy",
+    imgUrl: "https://ssl.gstatic.com/onebox/weather/64/sunny.png",
+    humidity: 80,
+    wind: 10,
+  };
 
   return (
-    <ColorRing
-      visible={true}
-      height="80"
-      width="80"
-      ariaLabel="color-ring-loading"
-      wrapperStyle={{}}
-      wrapperClass="color-ring-wrapper"
-      colors={["#e15b64", "#f47e60", "#f8b26a", "#abbd81", "#849b87"]}
-    />
+    <div className="Weather">
+      <div className="overview">
+        <h1>
+          <Search />
+        </h1>{" "}
+        <ul>
+          <li>Last updated: {weatherData.date}</li>
+          <li>{weatherData.description}</li>
+        </ul>
+      </div>
+      <div className="row">
+        <div className="col-6">
+          <div className="clearfix weather-temperature">
+            <img
+              src={weatherData.imgUrl}
+              alt={weatherData.description}
+              className="float-left"
+            />
+            <div className="float-left">
+              <strong>{weatherData.temperature}</strong>
+              <span className="units">
+                <a href="/">°C</a> | <a href="/">°F</a>
+              </span>
+            </div>
+          </div>
+        </div>
+        <div className="col-6">
+          <ul>
+            <li>Humidity: {weatherData.humidity}%</li>
+            <li>Wind: {weatherData.wind} km/h</li>
+          </ul>
+        </div>
+      </div>
+    </div>
   );
 }

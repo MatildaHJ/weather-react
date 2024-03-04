@@ -1,0 +1,9 @@
+.Weather .overview {
+  margin-bottom: 20px;
+}
+
+.Weather .weather-temperature img {
+  margin-right: 5px;
+  height: 64px;
+  width: 64px;
+}
