@@ -1,49 +1,71 @@
-import React from "react";
+import React, { useState } from "react";
+import axios from "axios";
 import "./Weather.css";
-import Search from "./Search";
 
 export default function Weather() {
-  let weatherData = {
-    city: "New York",
-    temperature: 19,
-    date: "Tuesday 10:00",
-    description: "Cloudy",
-    imgUrl: "https://ssl.gstatic.com/onebox/weather/64/sunny.png",
-    humidity: 80,
-    wind: 10,
-    precipitation: 15,
-  };
+  const [ready, setReady] = useState(false);
+  const [temperature, setTemperature] = useState(null);
+  function handleResponse(response) {
+    console.log(response);
+    setTemperature(response.data.temperature.current);
+    setReady(true);
+  }
 
-  return (
-    <div className="Weather">
-      <div className="overview">
-        <h1>
-          <Search />
-        </h1>
-        <ul>
-          <li>Last updated: {weatherData.date}</li>
-          <li>{weatherData.description}</li>
-        </ul>
-      </div>
-      <div className="row">
-        <div className="col-6">
-          <div className="weather-temperature">
-            <img src={weatherData.imgUrl} alt={weatherData.description} />
-
-            <span className="temperature">{weatherData.temperature}</span>
-            <span className="units">
-              <a href="/">°C</a> | <a href="/">°F</a>
-            </span>
+  if (ready) {
+    return (
+      <div className="Weather">
+        <form className="mb-3">
+          <div className="row">
+            <div className="col-8">
+              <input
+                type="search"
+                placeholder="Type a city.."
+                className="form-control"
+                autoComplete="off"
+              />
+            </div>
+            <div className="col-2">
+              <input type="submit" value="Search" className="btn btn-primary" />
+            </div>
+            <div className="col-2">
+              <button className="current-button">
+                <i class="fa-solid fa-location-dot"></i>
+              </button>
+            </div>
           </div>
-        </div>
-        <div className="col-6">
+        </form>
+
+        <div className="overview">
+          <h1>Hello</h1>
           <ul>
-            <li>Precipitation: {weatherData.precipitation}%</li>
-            <li>Humidity: {weatherData.humidity}%</li>
-            <li>Wind: {weatherData.wind} km/h</li>
+            <li>Last updated:</li>
+            <li>Description</li>
           </ul>
         </div>
+        <div className="row">
+          <div className="col-6">
+            <div className="weather-temperature">
+              <span className="temperature">{temperature}</span>
+              <span className="units">
+                <a href="/">°C</a> | <a href="/">°F</a>
+              </span>
+            </div>
+          </div>
+          <div className="col-6">
+            <ul>
+              <li>Humidity:%</li>
+              <li>Wind:km/h</li>
+            </ul>
+          </div>
+        </div>
       </div>
-    </div>
-  );
+    );
+  } else {
+    const apiKey = "bf3o0930bd56bb8b43fbe8a4cftca0a1";
+    let city = "Stockholm";
+    let apiUrl = `https://api.shecodes.io/weather/v1/current?query=${city}&key=${apiKey}&units=metric`;
+    axios.get(apiUrl).then(handleResponse);
+
+    return "Loading weather for your city...";
+  }
 }

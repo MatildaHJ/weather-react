@@ -1,6 +1,23 @@
-.Weather .overview {
+.Weather {
   margin-bottom: 20px;
+  padding: 10px;
 }
+
+.current-button {
+  border: none;
+  background-color: white;
+  color: rgba(0, 0, 0, 0.5);
+  margin-left: -10px;
+}
+
+.current-button:hover {
+  color: rgba(0, 0, 0, 0.6);
+}
+
+.fa-location-dot {
+  font-size: 30px;
+}
+
 .Weather h1 {
   color: #878787;
   font-size: 24px;
