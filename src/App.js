@@ -5,7 +5,7 @@ import Forecast from "./Forecast";
 import "./Weather.css";
 import "./App.css";
 
-function App() {
+export default function App() {
   return (
     <div className="App">
       <div className="container">
@@ -13,9 +13,18 @@ function App() {
           <Weather />
         </header>
         <Forecast />
+        <footer>
+          This is an{" "}
+          <a
+            href="https://github.com/MatildaHJ/weather-react"
+            target="_blank"
+            rel="noreferrer"
+          >
+            open source code
+          </a>{" "}
+          by Matilda Larsson
+        </footer>
       </div>
     </div>
   );
 }
-
-export default App;
