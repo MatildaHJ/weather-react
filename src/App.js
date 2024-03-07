@@ -10,7 +10,7 @@ export default function App() {
       <div className="container">
         <div className="main">
           <header className="App-header">
-            <Weather />
+            <Weather defaultCity="Stockholm" />
           </header>
           <Forecast />
         </div>

@@ -2,7 +2,9 @@
   margin-bottom: 20px;
   padding: 10px;
 }
-
+.Weather .overview {
+  margin-bottom: 20px;
+}
 .current-button {
   border: none;
   background-color: white;
@@ -19,7 +21,7 @@
 }
 
 .Weather h1 {
-  color: #878787;
+  color: #7c7c7c;
   font-size: 24px;
   font-weight: 100;
   line-height: 28px;
@@ -34,27 +36,29 @@
 .Weather li {
   list-style: none;
   margin: 0;
-  padding: 0;
-  color: rgb(135, 135, 135);
+  padding: 2.5px;
+  color: #7c7c7c;
   font-size: 16px;
   font-weight: 100;
   line-height: 19px;
 }
 
-.Weather li:first-letter {
+.Weather li:first-letter,
+.Weather h1:first-letter {
   text-transform: capitalize;
 }
 
 .Weather .weather-temperature img {
   margin-top: -20px;
+  margin-left: -20px;
 }
 
 .Weather .temperature {
-  font-size: 48px;
+  font-size: 50px;
   line-height: 64px;
 }
 .Weather .units {
-  font-size: 16px;
+  font-size: 15px;
   position: relative;
   top: -24px;
   margin-left: 8px;

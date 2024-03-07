@@ -2,21 +2,28 @@ import React, { useState } from "react";
 import axios from "axios";
 import "./Weather.css";
 
-export default function Weather() {
-  const [ready, setReady] = useState(false);
-  const [temperature, setTemperature] = useState(null);
+export default function Weather(props) {
+  const [weatherData, setWeatherData] = useState({ ready: false });
+
   function handleResponse(response) {
-    console.log(response);
-    setTemperature(response.data.temperature.current);
-    setReady(true);
+    setWeatherData({
+      ready: true,
+      temperature: response.data.temperature.current,
+      wind: response.data.wind.speed,
+      humidity: response.data.temperature.humidity,
+      city: response.data.city,
+      description: response.data.condition.description,
+      iconUrl: response.data.condition.icon_url,
+      date: "wednesday 22.05",
+    });
   }
 
-  if (ready) {
+  if (weatherData.ready) {
     return (
       <div className="Weather">
         <form className="mb-3">
           <div className="row">
-            <div className="col-8">
+            <div className="col-9">
               <input
                 type="search"
                 placeholder="Type a city.."
@@ -27,7 +34,7 @@ export default function Weather() {
             <div className="col-2">
               <input type="submit" value="Search" className="btn btn-primary" />
             </div>
-            <div className="col-2">
+            <div className="col-1">
               <button className="current-button">
                 <i class="fa-solid fa-location-dot"></i>
               </button>
@@ -36,16 +43,23 @@ export default function Weather() {
         </form>
 
         <div className="overview">
-          <h1>Hello</h1>
+          <h1>{weatherData.city}</h1>
           <ul>
-            <li>Last updated:</li>
-            <li>Description</li>
+            <li>
+              Last updated:
+              <span className="text-capitalize"> {weatherData.date}</span>
+            </li>
+            <li>{weatherData.description}</li>
           </ul>
         </div>
         <div className="row">
           <div className="col-6">
             <div className="weather-temperature">
-              <span className="temperature">{temperature}</span>
+              <img src={weatherData.iconUrl} alt={weatherData.description} />
+
+              <span className="temperature">
+                {Math.round(weatherData.temperature)}
+              </span>
               <span className="units">
                 <a href="/">°C</a> | <a href="/">°F</a>
               </span>
@@ -53,8 +67,8 @@ export default function Weather() {
           </div>
           <div className="col-6">
             <ul>
-              <li>Humidity:%</li>
-              <li>Wind:km/h</li>
+              <li>Humidity: {weatherData.humidity}%</li>
+              <li>Wind: {weatherData.wind}km/h</li>
             </ul>
           </div>
         </div>
@@ -62,10 +76,9 @@ export default function Weather() {
     );
   } else {
     const apiKey = "bf3o0930bd56bb8b43fbe8a4cftca0a1";
-    let city = "Stockholm";
-    let apiUrl = `https://api.shecodes.io/weather/v1/current?query=${city}&key=${apiKey}&units=metric`;
+    let apiUrl = `https://api.shecodes.io/weather/v1/current?query=${props.defaultCity}&key=${apiKey}&units=metric`;
     axios.get(apiUrl).then(handleResponse);
 
-    return "Loading weather for your city...";
+    return "Loading weather...";
   }
 }
