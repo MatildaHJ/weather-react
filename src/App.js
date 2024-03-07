@@ -1,5 +1,4 @@
 import React from "react";
-
 import Weather from "./Weather";
 import Forecast from "./Forecast";
 import "./Weather.css";
@@ -9,10 +8,12 @@ export default function App() {
   return (
     <div className="App">
       <div className="container">
-        <header className="App-header">
-          <Weather />
-        </header>
-        <Forecast />
+        <div className="main">
+          <header className="App-header">
+            <Weather />
+          </header>
+          <Forecast />
+        </div>
         <footer>
           This is an{" "}
           <a
@@ -22,7 +23,7 @@ export default function App() {
           >
             open source code
           </a>{" "}
-          by Matilda Larsson
+          by <strong>Matilda Larsson</strong>
         </footer>
       </div>
     </div>

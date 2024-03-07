@@ -11,6 +11,7 @@ export default function Weather() {
     imgUrl: "https://ssl.gstatic.com/onebox/weather/64/sunny.png",
     humidity: 80,
     wind: 10,
+    precipitation: 15,
   };
 
   return (
@@ -18,7 +19,7 @@ export default function Weather() {
       <div className="overview">
         <h1>
           <Search />
-        </h1>{" "}
+        </h1>
         <ul>
           <li>Last updated: {weatherData.date}</li>
           <li>{weatherData.description}</li>
@@ -26,22 +27,18 @@ export default function Weather() {
       </div>
       <div className="row">
         <div className="col-6">
-          <div className="clearfix weather-temperature">
-            <img
-              src={weatherData.imgUrl}
-              alt={weatherData.description}
-              className="float-left"
-            />
-            <div className="float-left">
-              <strong>{weatherData.temperature}</strong>
-              <span className="units">
-                <a href="/">°C</a> | <a href="/">°F</a>
-              </span>
-            </div>
+          <div className="weather-temperature">
+            <img src={weatherData.imgUrl} alt={weatherData.description} />
+
+            <span className="temperature">{weatherData.temperature}</span>
+            <span className="units">
+              <a href="/">°C</a> | <a href="/">°F</a>
+            </span>
           </div>
         </div>
         <div className="col-6">
           <ul>
+            <li>Precipitation: {weatherData.precipitation}%</li>
             <li>Humidity: {weatherData.humidity}%</li>
             <li>Wind: {weatherData.wind} km/h</li>
           </ul>
