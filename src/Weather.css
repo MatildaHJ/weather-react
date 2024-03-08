@@ -1,5 +1,4 @@
 .Weather {
-  margin-bottom: 20px;
   padding: 10px;
 }
 .Weather .overview {
@@ -22,7 +21,7 @@
 
 .Weather h1 {
   color: #7c7c7c;
-  font-size: 24px;
+  font-size: 26px;
   line-height: 28px;
   margin-bottom: 5px;
 }
@@ -48,15 +47,15 @@
 }
 
 .Weather .weather-temperature img {
-  margin-top: -20px;
-  margin-left: -20px;
+  margin-top: -25px;
+  margin-left: -16px;
 }
 
 .Weather .temperature {
   font-size: 50px;
   line-height: 64px;
 }
-.Weather .units {
+.Weather .unit {
   font-size: 15px;
   position: relative;
   top: -24px;
