@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import axios from "axios";
+import { TailSpin } from "react-loader-spinner";
 import WeatherInfo from "./WeatherInfo";
 import "./Weather.css";
 
@@ -63,6 +64,19 @@ export default function Weather(props) {
     );
   } else {
     search();
-    return <div>"Loading weather..."</div>;
+    return (
+      <div className="loading">
+        <TailSpin
+          visible={true}
+          height="80"
+          width="80"
+          color="#0B5ED7"
+          ariaLabel="tail-spin-loading"
+          radius="1"
+          wrapperStyle={{}}
+          wrapperClass=""
+        />
+      </div>
+    );
   }
 }
