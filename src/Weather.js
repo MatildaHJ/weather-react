@@ -74,7 +74,7 @@ export default function Weather(props) {
           ariaLabel="tail-spin-loading"
           radius="1"
           wrapperStyle={{}}
-          wrapperClass=""
+          wrapperClassName=""
         />
       </div>
     );
