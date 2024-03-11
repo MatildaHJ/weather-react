@@ -13,7 +13,6 @@ export default function Forecast(props) {
   }, [props.city]);
 
   function handleResponse(response) {
-    console.log(response);
     setForecast(response.data.daily);
     setLoaded(true);
   }
