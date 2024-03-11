@@ -7,13 +7,16 @@
 }
 .forecast-days {
   text-align: center;
+  margin-top: 18px;
 }
-.day,
-.forecast-temp {
+.forecast-day,
+.forecast-temps {
   font-size: 12px;
   color: #878787;
 }
-.forcast-icon {
-  margin: 10px;
-  font-size: 30px;
+.forecast-day {
+  margin-bottom: -10px;
+}
+.forecast-temps {
+  margin-top: -5px;
 }
