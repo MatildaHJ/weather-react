@@ -53,11 +53,6 @@ export default function Weather(props) {
             <div className="col-2">
               <input type="submit" value="Search" className="btn btn-primary" />
             </div>
-            <div className="col-1">
-              <button className="current-button">
-                <i className="fa-solid fa-location-dot"></i>
-              </button>
-            </div>
           </div>
         </form>
         <WeatherInfo data={weatherData} />
